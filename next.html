@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You for Being Amazing, Adrenza</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f8faff 0%, #b2f0ff 25%, #f8faff 50%, #b2f0ff 75%, #f8faff 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease-in-out infinite;
+            color: #2d3a4a;
+            overflow-x: hidden;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .floating-elements {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .floating-star {
+            position: absolute;
+            font-size: 20px;
+            animation: float 6s ease-in-out infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 2;
+            backdrop-filter: blur(10px);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: fadeInDown 1.5s ease;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .main-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5em;
+            background: linear-gradient(45deg, #00eaff, #a1ffce, #fbc2eb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 8px rgba(0, 255, 255, 0.15);
+        }
+
+        .subtitle {
+            font-size: 1.3em;
+            color: #00bcd4;
+            margin-bottom: 20px;
+            font-weight: 400;
+            text-shadow: 0 1px 6px #e0f7fa;
+        }
+
+        .story-section {
+            background: linear-gradient(135deg, rgba(255, 182, 193, 0.2), rgba(221, 160, 221, 0.2));
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+            border: 2px solid rgba(255, 182, 193, 0.5);
+            animation: slideInLeft 1s ease 0.5s both;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .section-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5em;
+            color: #00b8d4;
+            text-align: center;
+            margin-bottom: 25px;
+            position: relative;
+            text-shadow: 0 2px 8px #b2f0ff;
+        }
+
+        .section-title::after {
+            content: '✨';
+            position: absolute;
+            right: -40px;
+            top: 0;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.2); opacity: 0.7; }
+        }
+
+        .message-unfold {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: unfoldMessage 0.8s ease forwards;
+        }
+
+        @keyframes unfoldMessage {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .talents-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .talent-card {
+            background: linear-gradient(135deg, rgba(178, 240, 255, 0.8), rgba(161, 255, 206, 0.6));
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            transform: scale(0.9);
+            opacity: 0;
+            animation: popIn 0.6s ease forwards;
+            border: 2px solid rgba(0, 202, 255, 0.3);
+            transition: all 0.3s ease;
+            color: #006064;
+        }
+
+        .talent-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        @keyframes popIn {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .talent-card:nth-child(1) { animation-delay: 0.2s; }
+        .talent-card:nth-child(2) { animation-delay: 0.4s; }
+        .talent-card:nth-child(3) { animation-delay: 0.6s; }
+        .talent-card:nth-child(4) { animation-delay: 0.8s; }
+
+        .talent-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+            display: block;
+            color: #00eaff;
+            text-shadow: 0 2px 8px #b2f0ff;
+        }
+
+        .dream-board {
+            background: linear-gradient(135deg, rgba(186, 85, 211, 0.1), rgba(147, 112, 219, 0.1));
+            padding: 35px;
+            border-radius: 25px;
+            margin: 40px 0;
+            border: 2px dashed rgba(186, 85, 211, 0.4);
+            animation: slideInRight 1s ease 1s both;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .dreams-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .dream-bubble {
+            background: linear-gradient(45deg, #b2f0ff, #a1ffce);
+            padding: 15px 25px;
+            border-radius: 50px;
+            color: #007c91;
+            font-weight: 500;
+            transform: scale(0);
+            animation: bubbleUp 0.5s ease forwards;
+            box-shadow: 0 5px 15px rgba(0, 202, 255, 0.08);
+        }
+
+        .dream-bubble:nth-child(1) { animation-delay: 1.2s; }
+        .dream-bubble:nth-child(2) { animation-delay: 1.4s; }
+        .dream-bubble:nth-child(3) { animation-delay: 1.6s; }
+        .dream-bubble:nth-child(4) { animation-delay: 1.8s; }
+
+        @keyframes bubbleUp {
+            to {
+                transform: scale(1);
+            }
+        }
+
+        .music-section {
+            background: linear-gradient(135deg, rgba(255, 105, 180, 0.1), rgba(255, 20, 147, 0.1));
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            margin: 30px 0;
+            animation: fadeIn 1s ease 2s both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .music-player {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 400px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        audio {
+            width: 100%;
+            border-radius: 10px;
+            outline: none;
+        }
+
+        .farewell-section {
+            background: linear-gradient(135deg, rgba(178, 240, 255, 0.3), rgba(161, 255, 206, 0.3));
+            padding: 40px;
+            border-radius: 25px;
+            text-align: center;
+            margin: 40px 0;
+            border: 2px solid rgba(0, 202, 255, 0.2);
+            animation: heartbeat 2s ease infinite;
+            color: #006064;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        .message-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 35px;
+            margin-top: 40px;
+            text-align: center;
+            border: 2px solid #b2f0ff;
+            animation: slideInUp 1s ease 2.5s both;
+            color: #007c91;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        #anonymous-message-form textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ffb6c1;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            resize: vertical;
+            font-family: 'Poppins', sans-serif;
+            background: rgba(255, 250, 250, 0.9);
+        }
+
+        .submit-button {
+            background: linear-gradient(45deg, #ffb6c1, #dda0dd);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        #message-status {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                padding: 20px;
+            }
+
+            .main-title {
+                font-size: 2.5em;
+            }
+
+            .section-title {
+                font-size: 2em;
+            }
+
+            .talents-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title::after {
+                right: -30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-title {
+                font-size: 2em;
+            }
+            
+            .subtitle {
+                font-size: 1.1em;
+            }
+
+            .story-section, .dream-board, .farewell-section {
+                padding: 20px;
+            }
+        }
+
+        .heart-float {
+            position: fixed;
+            pointer-events: none;
+            z-index: 3;
+            animation: floatUp 4s linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% {
+                opacity: 1;
+                transform: translateY(100vh) scale(0);
+            }
+            10% {
+                transform: translateY(90vh) scale(1);
+            }
+            90% {
+                transform: translateY(-10vh) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-20vh) scale(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Elements -->
+    <div class="floating-elements">
+        <div class="floating-star" style="top: 10%; left: 15%;">✨</div>
+        <div class="floating-star" style="top: 20%; right: 10%; animation-delay: 1s;">🌟</div>
+        <div class="floating-star" style="top: 60%; left: 5%; animation-delay: 2s;">⭐</div>
+        <div class="floating-star" style="bottom: 30%; right: 20%; animation-delay: 3s;">✨</div>
+        <div class="floating-star" style="bottom: 10%; left: 25%; animation-delay: 4s;">🌟</div>
+    </div>
+
+    <div class="container">
+        <!-- Header Section -->
+        <div class="header">
+            <h1 class="main-title">Thank You for Being Amazing, Adrenza! 💝</h1>
+            <p class="subtitle">A beautiful friendship born in 90 magical minutes on Wakie ✨</p>
+            <p class="subtitle">Philippines 🇵🇭 to India 🇮🇳 - Distance couldn't stop this connection</p>
+        </div>
+
+        <!-- Our Story Section -->
+        <div class="story-section">
+            <h2 class="section-title">That Magical Night - August 6, 2025</h2>
+            <div class="message-unfold" style="animation-delay: 0.5s;">
+                <p style="font-size: 1.2em; text-align: center; margin-bottom: 20px;">
+                    🌙 In the digital cosmos of Wakie, two souls connected across continents...
+                </p>
+            </div>
+            <div class="message-unfold" style="animation-delay: 1s;">
+                <p style="text-align: center; margin-bottom: 15px;">
+                    For 90 beautiful minutes, a stranger became a friend, a voice became a melody, and a moment became a memory. 
+                    Adrenza, you showed me that magic still exists in unexpected conversations with extraordinary people.
+                </p>
+            </div>
+            <div class="message-unfold" style="animation-delay: 1.5s;">
+                <p style="text-align: center; color: #8b7ca3; font-style: italic;">
+                    "Sometimes the most beautiful friendships are the ones that bloom briefly but leave lasting impressions on our hearts." 💫
+                </p>
+            </div>
+        </div>
+
+        <!-- Talents Section -->
+        <div class="story-section">
+            <h2 class="section-title">Your Amazing Talents</h2>
+            <div class="talents-grid">
+                <div class="talent-card">
+                    <span class="talent-icon">🎭</span>
+                    <h3>Voice Artist Extraordinaire</h3>
+                    <p>Your voice brings stories to life! From movies to short films, you paint emotions with every word you speak.</p>
+                </div>
+                <div class="talent-card">
+                    <span class="talent-icon">🎵</span>
+                    <h3>Melodious Singer</h3>
+                    <p>That song you sang during our call? Pure magic! Your voice has the power to heal hearts and inspire souls.</p>
+                </div>
+                <div class="talent-card">
+                    <span class="talent-icon">💃</span>
+                    <h3>Graceful Dancer</h3>
+                    <p>Dancing is poetry in motion, and you're the poet! Your moves tell stories that words cannot express.</p>
+                </div>
+                
+                <div class="talent-card">
+                    <span class="talent-icon">🌟</span>
+                    <h3>Pure hearth </h3>
+                    <p>Radiating positive vibes and good energy — you’re the kind of person who makes the world feel lighter just by being in it!</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Dream Board Section -->
+        <div class="dream-board">
+            <h2 class="section-title">Your Dreams Taking Flight</h2>
+            <div class="message-unfold" style="animation-delay: 1s;">
+                <p style="text-align: center; margin-bottom: 25px; font-size: 1.1em;">
+                    🎨 Every artist needs a canvas, and the world is yours, Adrenza! 
+                </p>
+            </div>
+            <div class="dreams-container">
+                <div class="dream-bubble">🎬 Becoming a Full-Time Artist</div>
+                <div class="dream-bubble">🏖️ Explore Adventures</div>
+                <div class="dream-bubble">🪂 Conquering Sky Diving Fear</div>
+                <div class="dream-bubble">🥭 Enjoying Your Matcha</div>
+            </div>
+            <div class="message-unfold" style="animation-delay: 2s;">
+                <p style="text-align: center; margin-top: 20px; font-style: italic; color: #8b7ca3;">
+                    "Chase your dreams fearlessly, Adrenza. The world needs your unique artistry!" ✨
+                </p>
+            </div>
+        </div>
+
+        <!-- Music Section -->
+        <div class="music-section">
+            <h2 class="section-title">A Song for You</h2>
+            <p style="margin-bottom: 20px;">🎶 This melody captures the beauty of unexpected connections</p>
+            <div class="music-player">
+                <audio controls>
+                    <source src="Le John - Naiilang (Official Lyric Video).mp3" type="audio/mpeg">
+                    <p>Your browser doesn't support HTML5 audio. Here's a <a href="Le John - Naiilang (Official Lyric Video).mp3">link to the audio</a> instead.</p>
+                </audio>
+                <p style="margin-top: 10px; font-size: 0.9em; color: #8b7ca3;">
+                   
+                </p>
+            </div>
+        </div>
+
+        <!-- Farewell Message -->
+        <div class="farewell-section">
+            <h2 class="section-title">Until We Meet Again... 🌈</h2>
+            <div class="message-unfold" style="animation-delay: 0.5s;">
+                <p style="font-size: 1.3em; margin-bottom: 20px;">
+                    Dear Adrenza, 💕
+                </p>
+            </div>
+            <div class="message-unfold" style="animation-delay: 1s;">
+                <p style="margin-bottom: 15px;">
+                    Though our paths crossed for just 90 minutes, you've left an indelible mark on my heart. 
+                    Your talent, your dreams, your beautiful voice singing in our conversation - everything about you is simply amazing!
+                </p>
+            </div>
+            <div class="message-unfold" style="animation-delay: 1.5s;">
+                <p style="margin-bottom: 15px;">
+                    As you delete Wakie and focus on your artistic journey, know that somewhere in India, 
+                    there's someone cheering for your success, believing in your dreams, and grateful for that magical night.
+                </p>
+            </div>
+            <div class="message-unfold" style="animation-delay: 2s;">
+                <p style="margin-bottom: 15px;">
+                    May your voice touch millions of hearts, may your dance inspire countless souls, 
+                    and may you conquer that sky diving fear to soar as high as your dreams! 🪂✨
+                </p>
+            </div>
+            <div class="message-unfold" style="animation-delay: 2.5s;">
+                <p style="font-size: 1.2em; color: #8b7ca3; font-weight: 600;">
+                    Thank you for being amazing, Adrenza! 
+                    <br>The world is waiting for your magic! 🌟
+                </p>
+            </div>
+            <div class="message-unfold" style="animation-delay: 3s;">
+                <p style="margin-top: 20px; font-style: italic;">
+                    With love and best wishes from India 🇮🇳,<br>
+                    Your friend who will never forget that beautiful conversation ❤️
+                </p>
+            </div>
+        </div>
+
+        <!-- Message Section -->
+        <div class="message-section">
+            <h3 style="color: #8b7ca3; margin-bottom: 20px;">Leave a Final Note 💌</h3>
+            <p style="margin-bottom: 20px; color: #8b7ca3;">
+                If this touched your heart, Adrenza, feel free to leave a message before you begin your new journey! 
+            </p>
+            <form id="anonymous-message-form">
+                <textarea 
+                    id="message-content" 
+                    placeholder="Share your thoughts, dreams, or just say hello... 💫" 
+                    required 
+                    rows="4"
+                ></textarea>
+                <button type="submit" class="submit-button">Send Your Message ✨</button>
+            </form>
+            <div id="message-status"></div>
+        </div>
+    </div>
+
+    <script>
+        // Floating hearts animation
+        function createFloatingHeart() {
+            const hearts = ['💕', '💖', '💗', '💓', '💝', '🌸', '✨'];
+            const heart = document.createElement('div');
+            heart.className = 'heart-float';
+            heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+            
+            document.body.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 4000);
+        }
+
+        // Create floating hearts every 2 seconds
+        setInterval(createFloatingHeart, 2000);
+
+        // Message form functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('anonymous-message-form');
+            const messageContent = document.getElementById('message-content');
+            const messageStatus = document.getElementById('message-status');
+
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                const message = messageContent.value.trim();
+                
+                if (!message) {
+                    messageStatus.textContent = 'Please write a message first! 💭';
+                    messageStatus.style.color = '#ff6b6b';
+                    return;
+                }
+
+                try {
+                    // Using Web3Forms API (you'll need to replace with your actual access key)
+                    const response = await fetch('https://api.web3forms.com/submit', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            access_key: "60499b47-fede-434c-9a07-64386a38750d", // Replace with your actual key
+                            message: message,
+                            subject: "Message from Adrenza - Friendship Website",
+                            from_name: "Adrenza's Friendship Website"
+                        })
+                    });
+
+                    const result = await response.json();
+
+                    if (result.success) {
+                        messageStatus.textContent = 'Message sent successfully! Thank you, Adrenza! ✨💕';
+                        messageStatus.style.color = '#4ecdc4';
+                        form.reset();
+                        
+                        // Create celebration hearts
+                        for (let i = 0; i < 10; i++) {
+                            setTimeout(createFloatingHeart, i * 100);
+                        }
+                    } else {
+                        messageStatus.textContent = 'Failed to send message. Please try again. 💫';
+                        messageStatus.style.color = '#ff6b6b';
+                    }
+                } catch (error) {
+                    messageStatus.textContent = 'An error occurred. Please try again. 🌟';
+                    messageStatus.style.color = '#ff6b6b';
+                    console.error('Error:', error);
+                }
+            });
+
+            // Add progressive message reveal
+            const messages = document.querySelectorAll('.message-unfold');
+            messages.forEach((message, index) => {
+                message.style.animationDelay = (index * 0.5) + 's';
+            });
+        });
+
+        // Add sparkle effect on mouse move
+        document.addEventListener('mousemove', (e) => {
+            if (Math.random() > 0.85) {
+                const sparkle = document.createElement('div');
+                sparkle.textContent = '✨';
+                sparkle.style.position = 'fixed';
+                sparkle.style.left = e.clientX + 'px';
+                sparkle.style.top = e.clientY + 'px';
+                sparkle.style.pointerEvents = 'none';
+                sparkle.style.fontSize = '20px';
+                sparkle.style.animation = 'sparkle 1s ease-out forwards';
+                sparkle.style.zIndex = '1000';
+                
+                document.body.appendChild(sparkle);
+                
+                setTimeout(() => {
+                    sparkle.remove();
+                }, 1000);
+            }
+        });
+    </script>
+</body>
+</html>
